@@ -1,10 +1,23 @@
 def merge_intervals(intervals):
     """
-    Merge overlapping intervals.
+    Merge overlapping intervals
 
     :param intervals: List of intervals where each interval is represented as a tuple (start, end)
     :return: List of merged intervals
+    :raises TypeError: If input is not a list of tuples
+    :raises ValueError: If any tuple does not contain exactly two elements
     """
+
+    if not isinstance(intervals, list):
+        raise TypeError("Input should be a list of tuples representing intervals.")
+
+    for interval in intervals:
+        if not isinstance(interval, tuple) or len(interval) != 2:
+            raise ValueError("Each interval should be a tuple of exactly two elements (start, end).")
+        if not (isinstance(interval[0], (int, float)) and isinstance(interval[1], (int, float))):
+            raise ValueError("Both start and end of each interval should be numbers.")
+        if interval[0] > interval[1]:
+            raise ValueError("The start of each interval should not be greater than the end.")
 
     # Sort intervals by the first element
     sorted_intervals = sorted(intervals)
