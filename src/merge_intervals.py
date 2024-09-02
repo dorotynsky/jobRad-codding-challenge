@@ -81,8 +81,22 @@ def merge_intervals(intervals):
     return merged
 
 
-# example usage
 if __name__ == "__main__":
-    input_intervals = [(25, 30), (2, 19), (14, 23), (4, 8)]
-    merged_intervals = merge_intervals(input_intervals)
-    print(merged_intervals)
+    print("Select input method: 1 for default input, 2 for direct input from keyboard, 3 for input from a file")
+    choice = input("Enter choice (1, 2 or 3): ")
+    if choice == "1":
+        intervals = use_default_intervals()
+    elif choice == "2":
+        intervals = read_intervals_from_input()
+    elif choice == "3":
+        file_path = input("Enter file path: ")
+        intervals = read_intervals_from_file(file_path)
+    else:
+        print("Invalid input, exiting.")
+        sys.exit(1)
+
+    if intervals:
+        merged_intervals = merge_intervals(intervals)
+        print("Initial intervals: ", intervals, "\nMerged Intervals: ", merged_intervals)
+    else:
+        print("No intervals to process")
