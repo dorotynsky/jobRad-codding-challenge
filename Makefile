@@ -1,14 +1,14 @@
 # Install project dependencies
 install:
-	.venv/bin/pip install -r requirements.txt
+	venv/bin/pip install -r requirements.txt
 
 # Run the main script
 run:
-	.venv/bin/python src/merge_intervals.py
+	venv/bin/python src/merge_intervals.py
 
 # Run unit tests
 test:
-	.venv/bin/python -m unittest discover -s tests
+	venv/bin/python -m unittest discover -s tests
 
 # Clean up temporary files
 clean:
