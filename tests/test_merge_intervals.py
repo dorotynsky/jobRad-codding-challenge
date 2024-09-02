@@ -20,6 +20,26 @@ class TestMergeIntervals(unittest.TestCase):
         # Overlapping intervals
         self.assertEqual(merge_intervals([(1, 5), (2, 6), (8, 10), (9, 12)]), [(1, 6), (8, 12)])
 
+    def test_touching_intervals(self):
+        # Test case with intervals that touch but do not overlap
+        self.assertEqual(merge_intervals([(1, 3), (3, 5), (5, 7)]), [(1, 7)])
+
+    def test_nested_intervals(self):
+        # Test case with nested intervals (one inside the other)
+        self.assertEqual(merge_intervals([(1, 10), (2, 5), (6, 9)]), [(1, 10)])
+
+    def test_mixed_intervals(self):
+        # Test case with a mix of overlapping and non-overlapping intervals
+        self.assertEqual(merge_intervals([(1, 4), (2, 6), (8, 10), (15, 18)]), [(1, 6), (8, 10), (15, 18)])
+
+    def test_unsorted_intervals(self):
+        # Test case with unsorted intervals
+        self.assertEqual(merge_intervals([(8, 10), (1, 3), (2, 6), (15, 18)]), [(1, 6), (8, 10), (15, 18)])
+
+    def test_overlapping_and_touching(self):
+        # Test case with a combination of overlapping and touching intervals
+        self.assertEqual(merge_intervals([(1, 3), (2, 6), (6, 8), (9, 12)]), [(1, 8), (9, 12)])
+
 
 if __name__ == "__main__":
     unittest.main()
