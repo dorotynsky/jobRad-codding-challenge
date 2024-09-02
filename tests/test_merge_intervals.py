@@ -1,6 +1,8 @@
 import unittest
 
-from src.merge_intervals import merge_intervals
+from src.merge_intervals import merge_intervals, read_intervals_from_file, use_default_intervals
+import os
+import tempfile
 
 
 class TestMergeIntervals(unittest.TestCase):
@@ -39,6 +41,24 @@ class TestMergeIntervals(unittest.TestCase):
     def test_overlapping_and_touching(self):
         # Test case with a combination of overlapping and touching intervals
         self.assertEqual(merge_intervals([(1, 3), (2, 6), (6, 8), (9, 12)]), [(1, 8), (9, 12)])
+
+    def test_use_default_intervals(self):
+        expected = [(2, 23), (25, 30)]
+        result = merge_intervals(use_default_intervals())
+        self.assertEqual(result, expected)
+
+    def test_read_intervals_from_file(self):
+        # create temp file with intervals
+        temp = tempfile.NamedTemporaryFile(delete=False)
+        temp.write(b"1,3\n4,6\n7,9")
+        temp.close()
+
+        expected = [(1, 3), (4, 6), (7, 9)]
+        result = read_intervals_from_file(temp.name)
+
+        # delete temporary file
+        os.unlink(temp.name)
+        self.assertEqual(result, expected)
 
 
 if __name__ == "__main__":
