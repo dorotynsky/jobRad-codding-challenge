@@ -1,3 +1,6 @@
+import sys
+
+
 def use_default_intervals():
     """
     Return a default list of intervals predefined in the script.
@@ -22,6 +25,22 @@ def read_intervals_from_input():
             break
         intervals.append(tuple(map(int, line.split(','))))
     return intervals
+
+
+def read_intervals_from_file(file_path):
+    """
+    Read intervals from a specified file.
+
+    Each line in the file should contain an interval formatted as 'start,end'.
+    :param file_path: Path to the file containing intervals
+    :return: List of tuples representing the intervals
+    """
+    try:
+        with open(file_path, 'r') as file:
+            return [tuple(map(int, line.strip().split(','))) for line in file if line.strip()]
+    except FileNotFoundError:
+        print("File not found.")
+        sys.exit(1)
 
 
 def merge_intervals(intervals):
