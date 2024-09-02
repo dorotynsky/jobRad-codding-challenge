@@ -36,6 +36,15 @@ def merge_intervals(intervals):
     return merged
 
 
+def use_default_intervals():
+    """
+    Return a default list of intervals predefined in the script.
+
+    :return: List of tuples representing the intervals
+    """
+    return [(25, 30), (2, 19), (14, 23), (4, 8)]
+
+
 # example usage
 if __name__ == "__main__":
     input_intervals = [(25, 30), (2, 19), (14, 23), (4, 8)]
