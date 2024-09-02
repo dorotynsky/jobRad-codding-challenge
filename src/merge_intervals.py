@@ -1,3 +1,29 @@
+def use_default_intervals():
+    """
+    Return a default list of intervals predefined in the script.
+
+    :return: List of tuples representing the intervals
+    """
+    return [(25, 30), (2, 19), (14, 23), (4, 8)]
+
+
+def read_intervals_from_input():
+    """
+    Read intervals from user input.
+
+    Users are prompted to enter intervals in the format 'start,end' and type 'done' to finish input.
+    :return: List of tuples representing the intervals
+    """
+    print("Enter intervals in the format 'start,end' and type 'done' when finished:")
+    intervals = []
+    while True:
+        line = input()
+        if line.lower() == 'done':
+            break
+        intervals.append(tuple(map(int, line.split(','))))
+    return intervals
+
+
 def merge_intervals(intervals):
     """
     Merge overlapping intervals
@@ -34,15 +60,6 @@ def merge_intervals(intervals):
             merged[-1] = (merged[-1][0], max(merged[-1][1], interval[1]))
 
     return merged
-
-
-def use_default_intervals():
-    """
-    Return a default list of intervals predefined in the script.
-
-    :return: List of tuples representing the intervals
-    """
-    return [(25, 30), (2, 19), (14, 23), (4, 8)]
 
 
 # example usage
