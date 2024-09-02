@@ -1,4 +1,11 @@
 def merge_intervals(intervals):
+    """
+    Merge overlapping intervals.
+
+    :param intervals: List of intervals where each interval is represented as a tuple (start, end)
+    :return: List of merged intervals
+    """
+
     # Sort intervals by the first element
     sorted_intervals = sorted(intervals)
 
